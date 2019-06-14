@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>Unos Osobe</h2>
+<mat-dialog-content>
+  <form [formGroup]="form">
+      <input type="text" formControlName="name" placeholder="Ime">
+
+      <input type="text"  formControlName="surname" placeholder="Prezime">
+
+      <input type="text" formControlName="email" placeholder="E-mail">
+
+    <mat-form-field>
+      <input formControlName="birthDate" matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker2" placeholder="Datum rođenja">
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+      <mat-form-field>
+        <mat-select formControlName="gender" placeholder="Spol">
+          <ng-container *ngFor="let spolovilo of listaMogucihSpolovila">
+            <mat-option value="{{spolovilo.value}}">{{spolovilo.value}}</mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button class="btn btn-primary" (click)="onSpremi()">Spremi</button>
+    <button class="btn btn-primary" (click)="onZatvori()">Odustani</button>
+  </mat-dialog-actions>

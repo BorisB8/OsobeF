@@ -1,0 +1,46 @@
+<form class="glavni-form">
+    <mat-form-field class="unos-width">
+        <input matInput placeholder="Ime" [(ngModel)]="ime" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+    <mat-form-field class="unos-width">
+        <input matInput placeholder="Prezime" [(ngModel)]="prezime" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+    <div class="glavni-button-row">
+        <button mat-mini-fab color="primary"(click)="onFilter()">Filtriraj</button>
+        <button mat-mini-fab color="accent" (click)="onDodaj()">Dodaj</button>
+    </div>
+</form>
+
+<div>
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Ime </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="surname">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Prezime </th>
+            <td mat-cell *matCellDef="let element"> {{element.surname}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="birthDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Datum rođenja </th>
+            <td mat-cell *matCellDef="let element"> {{element.birthDate}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="gender">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Spol </th>
+            <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> E-mail </th>
+            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 50]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+</div>
